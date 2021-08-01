@@ -25,6 +25,8 @@ static void timerSetup() {
    */
 
   PRR0 &= ~(1 << PRTIM0);
+  PRR0 &= ~(1 << PRTIM2);
+
   TCCR0B = 0b00000101;
   TCNT0 = 0;
 }
@@ -46,11 +48,13 @@ static void run(void) {
   PORTA = 0b00000000;
 
   max7219::max7219_t max;
-  max.port = (uint8_t *)&PORTA;
+  max.port = &PORTA;
   max.bitClock = 0b00000001;
   max.bitChipSelect = 0b00000010;
   max.bitDataInput = 0b00000100;
-  max.clockDelayMicro = 1;
+  max.timerControl = &TCCR2B;
+  max.timerCount = &TCNT2;
+  max7219::start(max);
 
   uart_puts("I: off\n");
   {

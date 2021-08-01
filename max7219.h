@@ -10,7 +10,8 @@ typedef struct {
   uint8_t bitClock;
   uint8_t bitChipSelect;
   uint8_t bitDataInput;
-  uint32_t clockDelayMicro;
+  volatile uint8_t *timerCount;
+  volatile uint8_t *timerControl;
 } max7219_t;
 
 typedef enum {
@@ -52,6 +53,7 @@ struct command_t {
   } command;
 };
 
+void start(max7219_t &max);
 void sendCommand(max7219_t &max, const command_t &command);
 void sendData(max7219_t &max, uint8_t row, uint8_t data);
 

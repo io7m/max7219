@@ -1,11 +1,21 @@
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wsometimes-uninitialized"
-#include <util/delay.h>
-#pragma clang diagnostic pop
-
 #include "max7219.h"
 
 namespace max7219 {
+
+/*
+ * The datasheet for the MAX7219 states that the minimum clock pulse rate
+ * is 100 nanoseconds. A 16mhz CPU with a /1 prescaler gives us roughly 60ns
+ * per tick.
+ */
+
+static void pauseNanos(max7219_t &max) {
+  *max.timerCount = 0;
+  for (;;) {
+    if (*max.timerCount >= 2) {
+      return;
+    }
+  }
+}
 
 static void writeBit(max7219_t &max, bool bit) {
   if (bit) {
@@ -13,16 +23,22 @@ static void writeBit(max7219_t &max, bool bit) {
   } else {
     *max.port &= ~max.bitDataInput;
   }
+
   *max.port |= max.bitClock;
-  _delay_us(max.clockDelayMicro);
+  pauseNanos(max);
   *max.port &= ~max.bitClock;
-  _delay_us(max.clockDelayMicro);
+  pauseNanos(max);
 }
 
 static void write(max7219_t &max, uint8_t data) {
   for (int index = 7; index >= 0; --index) {
     writeBit(max, (data >> index) & 0b1);
   }
+}
+
+void start(max7219_t &max) {
+  *max.timerControl = 0b00000101;
+  *max.timerCount = 0;
 }
 
 void sendCommand(max7219_t &max, const command_t &command) {
@@ -59,7 +75,7 @@ void sendCommand(max7219_t &max, const command_t &command) {
 
   *max.port &= ~max.bitClock;
   *max.port |= max.bitChipSelect;
-  _delay_us(max.clockDelayMicro);
+  pauseNanos(max);
 }
 
 void sendData(max7219_t &max, uint8_t row, uint8_t data) {
@@ -71,7 +87,7 @@ void sendData(max7219_t &max, uint8_t row, uint8_t data) {
 
   *max.port &= ~max.bitClock;
   *max.port |= max.bitChipSelect;
-  _delay_us(max.clockDelayMicro);
+  pauseNanos(max);
 }
 
 } // namespace max7219
