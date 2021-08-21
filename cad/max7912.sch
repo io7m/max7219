@@ -1,0 +1,200 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L power:+5V #PWR?
+U 1 1 6120D884
+P 1050 3250
+F 0 "#PWR?" H 1050 3100 50  0001 C CNN
+F 1 "+5V" H 1065 3423 50  0000 C CNN
+F 2 "" H 1050 3250 50  0001 C CNN
+F 3 "" H 1050 3250 50  0001 C CNN
+	1    1050 3250
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 6120E064
+P 850 3550
+F 0 "#PWR?" H 850 3300 50  0001 C CNN
+F 1 "GND" H 855 3377 50  0000 C CNN
+F 2 "" H 850 3550 50  0001 C CNN
+F 3 "" H 850 3550 50  0001 C CNN
+	1    850  3550
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:LED D1
+U 1 1 6120E713
+P 2850 1000
+F 0 "D1" H 2843 1217 50  0000 C CNN
+F 1 "LED" H 2843 1126 50  0000 C CNN
+F 2 "" H 2850 1000 50  0001 C CNN
+F 3 "~" H 2850 1000 50  0001 C CNN
+	1    2850 1000
+	-1   0    0    1   
+$EndComp
+$Comp
+L Device:LED D2
+U 1 1 61210368
+P 2850 1500
+F 0 "D2" H 2843 1717 50  0000 C CNN
+F 1 "LED" H 2843 1626 50  0000 C CNN
+F 2 "" H 2850 1500 50  0001 C CNN
+F 3 "~" H 2850 1500 50  0001 C CNN
+	1    2850 1500
+	-1   0    0    1   
+$EndComp
+$Comp
+L Device:LED D3
+U 1 1 61210B49
+P 2850 2000
+F 0 "D3" H 2843 2217 50  0000 C CNN
+F 1 "LED" H 2843 2126 50  0000 C CNN
+F 2 "" H 2850 2000 50  0001 C CNN
+F 3 "~" H 2850 2000 50  0001 C CNN
+	1    2850 2000
+	-1   0    0    1   
+$EndComp
+$Comp
+L Device:R R1
+U 1 1 61215F29
+P 2450 1000
+F 0 "R1" V 2243 1000 50  0000 C CNN
+F 1 "220" V 2334 1000 50  0000 C CNN
+F 2 "" V 2380 1000 50  0001 C CNN
+F 3 "~" H 2450 1000 50  0001 C CNN
+	1    2450 1000
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R R2
+U 1 1 6121B0B2
+P 2450 1500
+F 0 "R2" V 2243 1500 50  0000 C CNN
+F 1 "220" V 2334 1500 50  0000 C CNN
+F 2 "" V 2380 1500 50  0001 C CNN
+F 3 "~" H 2450 1500 50  0001 C CNN
+	1    2450 1500
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R R3
+U 1 1 6121B90C
+P 2450 2000
+F 0 "R3" V 2243 2000 50  0000 C CNN
+F 1 "220" V 2334 2000 50  0000 C CNN
+F 2 "" V 2380 2000 50  0001 C CNN
+F 3 "~" H 2450 2000 50  0001 C CNN
+	1    2450 2000
+	0    1    1    0   
+$EndComp
+$Comp
+L max7912:MAX7912 U?
+U 1 1 6121EB63
+P 1650 2550
+F 0 "U?" H 1878 2446 50  0000 L CNN
+F 1 "MAX7912" H 1878 2355 50  0000 L CNN
+F 2 "" H 1300 2900 50  0001 C CNN
+F 3 "" H 1300 2900 50  0001 C CNN
+	1    1650 2550
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2600 1000 2700 1000
+Wire Wire Line
+	2600 2000 2700 2000
+Wire Wire Line
+	2600 1500 2700 1500
+$Comp
+L Connector:Conn_01x03_Male J1
+U 1 1 61222B35
+P 850 1550
+F 0 "J1" H 958 1831 50  0000 C CNN
+F 1 "inputs" H 958 1740 50  0000 C CNN
+F 2 "" H 850 1550 50  0001 C CNN
+F 3 "~" H 850 1550 50  0001 C CNN
+	1    850  1550
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1050 1450 1300 1450
+Wire Wire Line
+	1800 1450 1800 1000
+Wire Wire Line
+	1800 1000 2300 1000
+Wire Wire Line
+	1050 1550 1200 1550
+Wire Wire Line
+	2000 1550 2000 1500
+Wire Wire Line
+	2000 1500 2300 1500
+Wire Wire Line
+	1050 1650 1100 1650
+Wire Wire Line
+	1800 1650 1800 2000
+Wire Wire Line
+	1800 2000 2300 2000
+Wire Wire Line
+	1300 1450 1300 2500
+Wire Wire Line
+	1300 2500 1450 2500
+Connection ~ 1300 1450
+Wire Wire Line
+	1300 1450 1800 1450
+Wire Wire Line
+	1200 1550 1200 2600
+Wire Wire Line
+	1200 2600 1450 2600
+Connection ~ 1200 1550
+Wire Wire Line
+	1200 1550 2000 1550
+Wire Wire Line
+	1100 1650 1100 2700
+Wire Wire Line
+	1100 2700 1450 2700
+Connection ~ 1100 1650
+Wire Wire Line
+	1100 1650 1800 1650
+Wire Wire Line
+	1050 3250 1300 3250
+Wire Wire Line
+	1300 3250 1300 2900
+Wire Wire Line
+	1300 2900 1450 2900
+Wire Wire Line
+	1450 2800 850  2800
+Wire Wire Line
+	850  2800 850  3400
+Wire Wire Line
+	3000 1000 3150 1000
+Wire Wire Line
+	3150 1000 3150 1500
+Wire Wire Line
+	3150 3400 850  3400
+Connection ~ 850  3400
+Wire Wire Line
+	850  3400 850  3550
+Wire Wire Line
+	3000 1500 3150 1500
+Connection ~ 3150 1500
+Wire Wire Line
+	3150 1500 3150 2000
+Wire Wire Line
+	3000 2000 3150 2000
+Connection ~ 3150 2000
+Wire Wire Line
+	3150 2000 3150 3400
+$EndSCHEMATC
